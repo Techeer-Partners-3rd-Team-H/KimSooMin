@@ -3,6 +3,7 @@ package jenakxm.RestaurantReview.controller;
 import jenakxm.RestaurantReview.domain.Review;
 import jenakxm.RestaurantReview.dto.AddReviewRequest;
 import jenakxm.RestaurantReview.dto.ReviewResponse;
+import jenakxm.RestaurantReview.dto.UpdateReviewRequest;
 import jenakxm.RestaurantReview.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -44,5 +45,12 @@ public class ReviewApiController {
         reviewService.delete(id);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PutMapping("/api/reviews/{id}")
+    public ResponseEntity<Review> updateReview(@PathVariable long id, @RequestBody UpdateReviewRequest request) {
+        Review updatedReview = reviewService.update(id, request);
+
+        return ResponseEntity.ok().body(updatedReview);
     }
 }
