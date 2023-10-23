@@ -24,4 +24,8 @@ public class ReviewService {
         return reviewRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
     }
+
+    public void delete(long id) {
+        reviewRepository.deleteById(id);
+    }
 }

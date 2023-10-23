@@ -32,10 +32,17 @@ public class ReviewApiController {
         return ResponseEntity.ok().body(reviews);
     }
 
-    @GetMapping("/api/articles/{id}")
+    @GetMapping("/api/reviews/{id}")
     public ResponseEntity<ReviewResponse> findReview(@PathVariable long id) {
         Review review = reviewService.findById(id);
 
         return ResponseEntity.ok().body(new ReviewResponse(review));
+    }
+
+    @DeleteMapping("/api/reviews/{id}")
+    public ResponseEntity<Void> deleteReview(@PathVariable long id) {
+        reviewService.delete(id);
+
+        return ResponseEntity.ok().build();
     }
 }
