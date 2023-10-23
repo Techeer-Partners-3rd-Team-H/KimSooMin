@@ -19,4 +19,9 @@ public class ReviewService {
     public List<Review> findAll() {
         return reviewRepository.findAll();
     }
+
+    public Review findById(long id) {
+        return reviewRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("not found: " + id));
+    }
 }

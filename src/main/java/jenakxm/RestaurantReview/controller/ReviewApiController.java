@@ -7,10 +7,7 @@ import jenakxm.RestaurantReview.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,6 +30,12 @@ public class ReviewApiController {
                 .toList();
 
         return ResponseEntity.ok().body(reviews);
+    }
 
+    @GetMapping("/api/articles/{id}")
+    public ResponseEntity<ReviewResponse> findReview(@PathVariable long id) {
+        Review review = reviewService.findById(id);
+
+        return ResponseEntity.ok().body(new ReviewResponse(review));
     }
 }
