@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+<title>Test results - ReviewApiControllerTest</title>
+<link href="../css/base-style.css" rel="stylesheet" type="text/css"/>
+<link href="../css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../js/report.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="content">
+<h1>ReviewApiControllerTest</h1>
+<div class="breadcrumbs">
+<a href="../index.html">all</a> &gt; 
+<a href="../packages/jenakxm.RestaurantReview.controller.html">jenakxm.RestaurantReview.controller</a> &gt; ReviewApiControllerTest</div>
+<div id="summary">
+<table>
+<tr>
+<td>
+<div class="summaryGroup">
+<table>
+<tr>
+<td>
+<div class="infoBox" id="tests">
+<div class="counter">1</div>
+<p>tests</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="failures">
+<div class="counter">0</div>
+<p>failures</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="ignored">
+<div class="counter">0</div>
+<p>ignored</p>
+</div>
+</td>
+<td>
+<div class="infoBox" id="duration">
+<div class="counter">0.512s</div>
+<p>duration</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</td>
+<td>
+<div class="infoBox success" id="successRate">
+<div class="percent">100%</div>
+<p>successful</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div id="tabs">
+<ul class="tabLinks">
+<li>
+<a href="#tab0">Tests</a>
+</li>
+<li>
+<a href="#tab1">Standard output</a>
+</li>
+</ul>
+<div id="tab0" class="tab">
+<h2>Tests</h2>
+<table>
+<thead>
+<tr>
+<th>Test</th>
+<th>Method name</th>
+<th>Duration</th>
+<th>Result</th>
+</tr>
+</thead>
+<tr>
+<td class="success">addReview : 리뷰 생성</td>
+<td class="success">addReview()</td>
+<td class="success">0.512s</td>
+<td class="success">passed</td>
+</tr>
+</table>
+</div>
+<div id="tab1" class="tab">
+<h2>Standard output</h2>
+<span class="code">
+<pre>23:08:33.798 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [jenakxm.RestaurantReview.controller.ReviewApiControllerTest]: ReviewApiControllerTest does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+23:08:33.859 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration jenakxm.SpringBootDeveloperApplication for test class jenakxm.RestaurantReview.controller.ReviewApiControllerTest
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+?[32m :: Spring Boot :: ?[39m              ?[2m (v3.1.3)?[0;39m
+
+?[2m2023-10-23T23:08:34.054+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mj.R.controller.ReviewApiControllerTest  ?[0;39m ?[2m:?[0;39m Starting ReviewApiControllerTest using Java 17.0.8 with PID 32664 (started by jenamac in /Users/jenamac/dev/KimSoomin)
+?[2m2023-10-23T23:08:34.055+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mj.R.controller.ReviewApiControllerTest  ?[0;39m ?[2m:?[0;39m No active profile set, falling back to 1 default profile: &quot;default&quot;
+?[2m2023-10-23T23:08:34.348+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36m.s.d.r.c.RepositoryConfigurationDelegate?[0;39m ?[2m:?[0;39m Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+?[2m2023-10-23T23:08:34.375+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36m.s.d.r.c.RepositoryConfigurationDelegate?[0;39m ?[2m:?[0;39m Finished Spring Data repository scanning in 20 ms. Found 1 JPA repository interfaces.
+?[2m2023-10-23T23:08:34.577+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mcom.zaxxer.hikari.HikariDataSource      ?[0;39m ?[2m:?[0;39m HikariPool-1 - Starting...
+?[2m2023-10-23T23:08:34.663+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mcom.zaxxer.hikari.pool.HikariPool       ?[0;39m ?[2m:?[0;39m HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb2 user=SA
+?[2m2023-10-23T23:08:34.666+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mcom.zaxxer.hikari.HikariDataSource      ?[0;39m ?[2m:?[0;39m HikariPool-1 - Start completed.
+?[2m2023-10-23T23:08:34.689+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.hibernate.jpa.internal.util.LogHelper ?[0;39m ?[2m:?[0;39m HHH000204: Processing PersistenceUnitInfo [name: default]
+?[2m2023-10-23T23:08:34.715+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36morg.hibernate.Version                   ?[0;39m ?[2m:?[0;39m HHH000412: Hibernate ORM core version 6.2.7.Final
+?[2m2023-10-23T23:08:34.717+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36morg.hibernate.cfg.Environment           ?[0;39m ?[2m:?[0;39m HHH000406: Using bytecode reflection optimizer
+?[2m2023-10-23T23:08:34.783+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.h.b.i.BytecodeProviderInitiator       ?[0;39m ?[2m:?[0;39m HHH000021: Bytecode provider name : bytebuddy
+?[2m2023-10-23T23:08:34.844+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.s.o.j.p.SpringPersistenceUnitInfo     ?[0;39m ?[2m:?[0;39m No LoadTimeWeaver setup: ignoring JPA class transformer
+?[2m2023-10-23T23:08:34.947+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.h.b.i.BytecodeProviderInitiator       ?[0;39m ?[2m:?[0;39m HHH000021: Bytecode provider name : bytebuddy
+?[2m2023-10-23T23:08:35.212+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.h.e.t.j.p.i.JtaPlatformInitiator      ?[0;39m ?[2m:?[0;39m HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Hibernate: 
+    drop table if exists review cascade 
+Hibernate: 
+    create table review (
+        id bigint generated by default as identity,
+        content varchar(255) not null,
+        restaurant varchar(255) not null,
+        title varchar(255) not null,
+        primary key (id)
+    )
+?[2m2023-10-23T23:08:35.232+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mj.LocalContainerEntityManagerFactoryBean?[0;39m ?[2m:?[0;39m Initialized JPA EntityManagerFactory for persistence unit 'default'
+?[2m2023-10-23T23:08:35.440+09:00?[0;39m ?[33m WARN?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mJpaBaseConfiguration$JpaWebConfiguration?[0;39m ?[2m:?[0;39m spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+?[2m2023-10-23T23:08:35.600+09:00?[0;39m ?[33m WARN?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mion$DefaultTemplateResolverConfiguration?[0;39m ?[2m:?[0;39m Cannot find template location: classpath:/templates/ (please add some templates, check your Thymeleaf configuration, or set spring.thymeleaf.check-template-location=false)
+?[2m2023-10-23T23:08:35.620+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.s.b.a.h2.H2ConsoleAutoConfiguration   ?[0;39m ?[2m:?[0;39m H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb2'
+?[2m2023-10-23T23:08:35.664+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2023-10-23T23:08:35.665+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2023-10-23T23:08:35.666+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+?[2m2023-10-23T23:08:35.683+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mj.R.controller.ReviewApiControllerTest  ?[0;39m ?[2m:?[0;39m Started ReviewApiControllerTest in 1.759 seconds (process running for 2.315)
+?[2m2023-10-23T23:08:35.982+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.s.b.t.m.w.SpringBootMockServletContext?[0;39m ?[2m:?[0;39m Initializing Spring TestDispatcherServlet ''
+?[2m2023-10-23T23:08:35.982+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Initializing Servlet ''
+?[2m2023-10-23T23:08:35.982+09:00?[0;39m ?[32m INFO?[0;39m ?[35m32664?[0;39m ?[2m---?[0;39m ?[2m[    Test worker]?[0;39m ?[36mo.s.t.web.servlet.TestDispatcherServlet ?[0;39m ?[2m:?[0;39m Completed initialization in 0 ms
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.content,
+        r1_0.restaurant,
+        r1_0.title 
+    from
+        review r1_0
+Hibernate: 
+    delete 
+    from
+        review 
+    where
+        id=?
+Hibernate: 
+    delete 
+    from
+        review 
+    where
+        id=?
+Hibernate: 
+    delete 
+    from
+        review 
+    where
+        id=?
+Hibernate: 
+    insert 
+    into
+        review
+        (content,restaurant,title,id) 
+    values
+        (?,?,?,default)
+Hibernate: 
+    select
+        r1_0.id,
+        r1_0.content,
+        r1_0.restaurant,
+        r1_0.title 
+    from
+        review r1_0
+</pre>
+</span>
+</div>
+</div>
+<div id="footer">
+<p>
+<div>
+<label class="hidden" id="label-for-line-wrapping-toggle" for="line-wrapping-toggle">Wrap lines
+<input id="line-wrapping-toggle" type="checkbox" autocomplete="off"/>
+</label>
+</div>Generated by 
+<a href="http://www.gradle.org">Gradle 8.2</a> at 2023. 10. 23. 오후 11:08:36</p>
+</div>
+</div>
+</body>
+</html>
