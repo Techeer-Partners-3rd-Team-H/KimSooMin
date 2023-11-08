@@ -6,16 +6,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-<div class="p-5 mb-5 text-center</> bg-light">
+<div class="p-5 mb-5 text-center bg-light">
     <h1 class="mb-3">Restaurants Reviews</h1>
     <h4 class="mb-3">원하는 리뷰를 찾아보세요.</h4>
 </div>
 
 <div class="container">
+
     <button type="button" id="create-btn"
             th:onclick="|location.href='@{/new-review}'|"
             class="btn btn-secondary btn-sm mb-3">글 등록</button>
-    <div class="row-6" th:each="item : ${reviews}">
+
+    <!-- 검색 기능 -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-8">
+                <input type="text" id="search-input" placeholder="검색어를 입력하세요">
+                <button id="search-button" class="btn btn-primary">검색</button>
+            </div>
+            <div id="search-results">
+                <!-- 검색 결과가 여기에 나타날 것입니다. -->
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row-6" id="card-container" th:each="item : ${reviews}">
         <div class="card">
             <div class="card-header" th:text="${item.id}">
             </div>
@@ -32,3 +48,4 @@
 
 <script src="/review.js"></script>
 </body>
+</html>

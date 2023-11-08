@@ -10,7 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @RestController
@@ -21,16 +24,6 @@ public class ReviewApiController {
     public ResponseEntity<Review> addReview(@RequestBody AddReviewRequest request) {
         Review savedReview = reviewService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedReview);
-    }
-
-    @GetMapping("/api/reviews")
-    public ResponseEntity<List<ReviewResponse>> findAllReviews() {
-        List<ReviewResponse> reviews = reviewService.findAll()
-                .stream()
-                .map(ReviewResponse::new)
-                .toList();
-
-        return ResponseEntity.ok().body(reviews);
     }
 
     @GetMapping("/api/reviews/{id}")
@@ -52,5 +45,22 @@ public class ReviewApiController {
         Review updatedReview = reviewService.update(id, request);
 
         return ResponseEntity.ok().body(updatedReview);
+    }
+
+    // 기본 리뷰 목록 엔드포인트
+    @GetMapping("/api/reviews")
+    public List<Review> getReviews() {
+        return reviewService.findAll();
+    }
+
+    @GetMapping("/api/reviews/search")
+    public ResponseEntity<List<ReviewResponse>> searchReviews(@RequestParam(name = "keyword") String keyword) {
+        List<Review> searchResults = reviewService.searchByTitleAndContentContaining(keyword);
+
+        List<ReviewResponse> reviews = searchResults.stream()
+                .map(ReviewResponse::new)
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(reviews);
     }
 }
