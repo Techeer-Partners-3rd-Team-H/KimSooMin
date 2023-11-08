@@ -18,11 +18,10 @@
                 <input type="hidden" id="review-id" th:value="${review.id}">
                 <header class="mb-4">
                     <h1 class="fw-bolder mb-1" th:text="${review.title}"></h1>
-                    <span th:text="${#dates.format(review.createdAt, 'yyyy-MM-dd HH:mm')}"></span>
-                    <span th:text="${#temporals.format(review.createdAt, T(java.time.format.DateTimeFormatter).ofPattern('yyyy-MM-dd HH:mm'))}"></span>
-                    <h3 class="fw-bolder mb-3" th:text="${review.restaurant}"></h3>
+                    <div class="text-muted fst-italic mb-2" th:text="${#temporals.format(review.createdAt, 'yyyy-MM-dd HH:mm')}"></div>
                 </header>
                 <section class="mb-5">
+                    <h3 class="fw-bolder mb-3" th:text="${review.restaurant}"></h3>
                     <p class="fs-5 mb-4" th:text="${review.content}"></p>
                 </section>
                 <button type="button" id="modify-btn"
