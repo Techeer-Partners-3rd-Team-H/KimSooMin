@@ -7,8 +7,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Getter
@@ -28,10 +30,13 @@ public class Review {
     @Column(name = "content", nullable = false)
     private String content;
 
-    @CreatedDate
-    @Column(name="created_at")
-    private LocalDateTime createdAt;
+//    @CreatedDate
+//    @Column(name="created_at")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date createdAt;
 
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
 
     @Builder
     public Review(String restaurant, String title, String content) {

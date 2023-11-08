@@ -111,6 +111,13 @@ if (searchButton) {
                             contentElement.textContent = review.content;
                             cardBody.appendChild(contentElement);
 
+                            // "보러가기" 버튼 추가
+                            const viewButton = document.createElement('a');
+                            viewButton.href = '/reviews/' + review.id;
+                            viewButton.className = 'btn btn-primary';
+                            viewButton.textContent = '보러가기';
+                            cardBody.appendChild(viewButton);
+
                             card.appendChild(cardBody);
                             reviewsContainers.forEach(container => {
                                 container.appendChild(card);
@@ -123,4 +130,72 @@ if (searchButton) {
             });
         }
     });
+}
+
+// 게시글 정렬
+const sortByRecentButton = document.getElementById('sortByRecent');
+const sortByOldestButton = document.getElementById('sortByOldest');
+
+sortByRecentButton.addEventListener('click', () => {
+    sortReviews('recent'); // 최신순 정렬 옵션을 전달
+});
+
+sortByOldestButton.addEventListener('click', () => {
+    sortReviews('oldest'); // 오래된순 정렬 옵션을 전달
+});
+
+function sortReviews(sortOption) {
+    fetch(`/api/reviews?sort=${sortOption}`)
+        .then(response => response.json())
+        .then(reviews => {
+            // 서버에서 반환된 정렬된 게시글을 표시
+            reviewsContainers.forEach(container => {
+                container.innerHTML = '';
+            });
+            reviews.forEach(review => {
+                // 새로운 카드 생성
+                const card = document.createElement('div');
+                card.className = 'card';
+
+                // 카드 내용 (생략)
+                const cardHeader = document.createElement('div');
+                cardHeader.className = 'card-header';
+                cardHeader.textContent = review.title;
+                card.appendChild(cardHeader);
+
+                const cardBody = document.createElement('div');
+                cardBody.className = 'card-body';
+
+                const titleElement = document.createElement('h5');
+                titleElement.className = 'card-title';
+                titleElement.textContent = review.title;
+                cardBody.appendChild(titleElement);
+
+                const restaurantElement = document.createElement('h6');
+                restaurantElement.className = 'card-title';
+                restaurantElement.textContent = review.restaurant;
+                cardBody.appendChild(restaurantElement);
+
+                const contentElement = document.createElement('p');
+                contentElement.className = 'card-text';
+                contentElement.textContent = review.content;
+                cardBody.appendChild(contentElement);
+
+                // "보러가기" 버튼 추가
+                const viewButton = document.createElement('a');
+                viewButton.href = '/reviews/' + review.id;
+                viewButton.className = 'btn btn-primary';
+                viewButton.textContent = '보러가기';
+                cardBody.appendChild(viewButton);
+
+                card.appendChild(cardBody);
+
+                reviewsContainers.forEach(container => {
+                    container.appendChild(card);
+                });
+            });
+        })
+        .catch(error => {
+            console.error('게시글 정렬 중 오류 발생:', error);
+        });
 }

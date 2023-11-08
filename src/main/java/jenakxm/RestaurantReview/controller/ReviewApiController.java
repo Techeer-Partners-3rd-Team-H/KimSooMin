@@ -47,12 +47,6 @@ public class ReviewApiController {
         return ResponseEntity.ok().body(updatedReview);
     }
 
-    // 기본 리뷰 목록 엔드포인트
-    @GetMapping("/api/reviews")
-    public List<Review> getReviews() {
-        return reviewService.findAll();
-    }
-
     @GetMapping("/api/reviews/search")
     public ResponseEntity<List<ReviewResponse>> searchReviews(@RequestParam(name = "keyword") String keyword) {
         List<Review> searchResults = reviewService.searchByTitleAndContentContaining(keyword);
@@ -62,5 +56,20 @@ public class ReviewApiController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok().body(reviews);
+    }
+
+    @GetMapping("/api/reviews")
+    public List<Review> getReviews(@RequestParam(name = "sort", required = false, defaultValue = "desc") String sortOption) {
+        List<Review> reviews;
+
+        if ("oldest".equals(sortOption)) {
+            // 오래된순 정렬
+            reviews = reviewService.findAllByOrderByCreatedAtAsc();
+        } else {
+            // 최신순 정렬 (기본값)
+            reviews = reviewService.findAllByOrderByCreatedAtDesc();
+        }
+
+        return reviews;
     }
 }
