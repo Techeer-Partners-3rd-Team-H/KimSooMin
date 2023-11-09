@@ -5,6 +5,9 @@ import jenakxm.RestaurantReview.dto.ReviewListViewResponse;
 import jenakxm.RestaurantReview.dto.ReviewViewResponse;
 import jenakxm.RestaurantReview.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,15 +21,24 @@ import java.util.List;
 public class ReviewViewController {
     private final ReviewService reviewService;
 
+//    @GetMapping("/reviews")
+//    public String getReviews(Model model) {
+//        List<ReviewListViewResponse> reviews = reviewService.findAll().stream()
+//                .map(ReviewListViewResponse::new)
+//                .toList();
+//        model.addAttribute("reviews", reviews);
+//
+//        return "reviewList";
+//    }
+
     @GetMapping("/reviews")
-    public String getReviews(Model model) {
-        List<ReviewListViewResponse> reviews = reviewService.findAll().stream()
-                .map(ReviewListViewResponse::new)
-                .toList();
+    public String getReviews(Model model, @PageableDefault(size = 5) Pageable pageable) {
+        Page<Review> reviews = reviewService.findAll(pageable);
         model.addAttribute("reviews", reviews);
 
         return "reviewList";
     }
+
 
     @GetMapping("/reviews/{id}")
     public String getReview(@PathVariable Long id, Model model) {

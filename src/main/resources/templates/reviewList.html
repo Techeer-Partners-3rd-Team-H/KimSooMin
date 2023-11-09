@@ -47,8 +47,27 @@
         </div>
         <br>
     </div>
-</div>
 
+    <!-- 페이지네이션 컴포넌트 표시 -->
+    <ul class="pagination">
+        <li th:if="${reviews.hasPrevious()}" class="page-item">
+            <a class="page-link" th:href="@{/reviews(page=0)}">첫 페이지</a>
+        </li>
+        <li th:if="${reviews.hasPrevious()}" class="page-item">
+            <a class="page-link" th:href="@{/reviews(page=${reviews.number - 1})}">이전 페이지</a>
+        </li>
+        <li th:each="i : ${#numbers.sequence(0, reviews.totalPages - 1)}" class="page-item">
+            <a class="page-link" th:href="@{/reviews(page=${i})}" th:text="${i + 1}"></a>
+        </li>
+        <li th:if="${reviews.hasNext()}" class="page-item">
+            <a class="page-link" th:href="@{/reviews(page=${reviews.number + 1})}">다음 페이지</a>
+        </li>
+        <li th:if="${reviews.hasNext()}" class="page-item">
+            <a class="page-link" th:href="@{/reviews(page=${reviews.totalPages - 1})}">마지막 페이지</a>
+        </li>
+    </ul>
+
+</div>
 <script src="/reviewList.js"></script>
 </body>
 </html>

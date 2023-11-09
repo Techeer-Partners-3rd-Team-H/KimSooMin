@@ -5,9 +5,13 @@ import jenakxm.RestaurantReview.dto.AddReviewRequest;
 import jenakxm.RestaurantReview.dto.UpdateReviewRequest;
 import jenakxm.RestaurantReview.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,5 +58,21 @@ public class ReviewService {
 
     public List<Review> findAllByOrderByCreatedAtDesc() {
         return reviewRepository.findAllByOrderByCreatedAtDesc();
+    }
+
+    public Page<Review> findAll(Pageable pageable) {
+        return reviewRepository.findAll(pageable);
+    }
+
+    public Page<Review> findAllByOrderByCreatedAtAsc(Pageable pageable) {
+        Sort sort = Sort.by(Sort.Order.asc("createdAt"));
+        pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+        return reviewRepository.findAllByOrderByCreatedAtAsc(pageable);
+    }
+
+    public Page<Review> findAllByOrderByCreatedAtDesc(Pageable pageable) {
+        Sort sort = Sort.by(Sort.Order.desc("createdAt"));
+        pageable = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), sort);
+        return reviewRepository.findAllByOrderByCreatedAtDesc(pageable);
     }
 }
