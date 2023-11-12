@@ -10,9 +10,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class UpdateReviewRequest {
-    private Restaurant restaurant;
-    private String title;
-    private String content;
-    private LocalDateTime createdAt;
+public class UpdateRestaurantRequest {
+    private String restaurantName;
+    private String category;
 }

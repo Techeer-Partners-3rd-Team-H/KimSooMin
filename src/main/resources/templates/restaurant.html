@@ -6,34 +6,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-<div class="p-5 mb-5 text-center</> bg-light">
-    <h1 class="mb-3">Restaurant Reviews</h1>
-    <h4 class="mb-3">원하는 리뷰를 찾아보세요!</h4>
+<div class="p-5 mb-5 text-center bg-light">
+    <h1 class="mb-3">Restaurants</h1>
+    <h4 class="mb-3">원하는 레스토랑을 찾아보세요.</h4>
 </div>
 
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8">
             <article>
-                <input type="hidden" id="review-id" th:value="${review.id}">
+                <input type="hidden" id="restaurant-id" th:value="${restaurant.restaurantId}">
                 <header class="mb-4">
-                    <h1 class="fw-bolder mb-1" th:text="${review.title}"></h1>
-                    <div class="text-muted fst-italic mb-2" th:text="${#temporals.format(review.createdAt, 'yyyy-MM-dd HH:mm')}"></div>
+                    <h1 class="fw-bolder mb-1" th:text="${restaurant.restaurantName}"></h1>
                 </header>
                 <section class="mb-5">
-                    <h3 class="fw-bolder mb-3" th:text="${review.restaurant.restaurantName}"></h3>
-                    <p class="fs-5 mb-4" th:text="${review.content}"></p>
+                    <h3 class="fw-bolder mb-3" th:text="${restaurant.category}"></h3>
                 </section>
                 <button type="button" id="modify-btn"
-                        th:onclick="|location.href='@{/new-review?id={reviewId}(reviewId=${review.id})}'|"
+                        th:onclick="|location.href='@{/new-restaurant?id={restaurantId}(restaurantId=${restaurant.restaurantId})}'|"
                         class="btn btn-primary btn-sm">수정</button>
                 <button type="button" id="delete-btn"
                         class="btn btn-secondary btn-sm">삭제</button>
             </article>
         </div>
+
     </div>
 </div>
 
-<script src="/review.js"></script>
+<script src="/restaurant.js"></script>
 </body>
 </html>

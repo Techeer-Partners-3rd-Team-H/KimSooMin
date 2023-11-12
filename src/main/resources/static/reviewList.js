@@ -1,26 +1,3 @@
-
-// 등록 기능
-const createButton = document.getElementById('create-btn');
-
-if (createButton) {
-    createButton.addEventListener("click", event => {
-        fetch("/api/reviews", {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                title: document.getElementById("title").value,
-                restaurant: document.getElementById('restaurant').value,
-                content: document.getElementById("content").value
-            })
-        })
-        .then(() => {
-            alert('등록이 완료되었습니다.');
-            location.replace("/reviews");
-        });
-    });
-}
 // 검색 기능
 const searchButton = document.getElementById('search-button');
 const searchInput = document.getElementById('search-input');
@@ -30,7 +7,7 @@ if (searchButton) {
     searchButton.addEventListener('click', () => {
         const searchValue = searchInput.value;
         if (searchValue) {
-            // 모든 카드 컨테이너 삭제
+            // 모든 카드 컨테이너 비우기
             reviewsContainers.forEach(container => {
                 container.innerHTML = '';
             });
@@ -38,32 +15,32 @@ if (searchButton) {
             fetch(`/api/reviews/search?keyword=${searchValue}`)
                 .then(response => response.json())
                 .then(reviews => {
+                    const cardContainer = document.createElement('div'); // 새로운 컨테이너 생성
+                    reviewsContainers.forEach(container => {
+                        // 리뷰를 표시할 하나의 컨테이너에만 추가
+                        container.appendChild(cardContainer);
+                    });
+
                     if (reviews.length === 0) {
-                        reviewsContainer.innerHTML = '검색 결과가 없습니다.';
+                        cardContainer.innerHTML = '검색 결과가 없습니다.';
                     } else {
                         reviews.forEach(review => {
                             // 새로운 카드 생성
                             const card = document.createElement('div');
                             card.className = 'card';
 
-                            // 카드 내용 (생략)
                             const cardHeader = document.createElement('div');
                             cardHeader.className = 'card-header';
-                            cardHeader.textContent = review.title;
+                            cardHeader.textContent = review.restaurant.restaurantName;
                             card.appendChild(cardHeader);
 
                             const cardBody = document.createElement('div');
                             cardBody.className = 'card-body';
 
-                            const titleElement = document.createElement('h5');
+                            const titleElement = document.createElement('h6');
                             titleElement.className = 'card-title';
                             titleElement.textContent = review.title;
                             cardBody.appendChild(titleElement);
-
-                            const restaurantElement = document.createElement('h6');
-                            restaurantElement.className = 'card-title';
-                            restaurantElement.textContent = review.restaurant;
-                            cardBody.appendChild(restaurantElement);
 
                             const contentElement = document.createElement('p');
                             contentElement.className = 'card-text';
@@ -78,18 +55,14 @@ if (searchButton) {
                             cardBody.appendChild(viewButton);
 
                             card.appendChild(cardBody);
-                            reviewsContainers.forEach(container => {
-                                container.appendChild(card);
+                            cardContainer.appendChild(card); // 컨테이너에 카드 추가
                         });
-                    });
-                }
-            })
-            .catch(error => {
-                console.error('검색 중 오류 발생:', error);
-            });
+                    }
+                });
         }
     });
 }
+
 
 // 게시글 정렬
 const sortByRecentButton = document.getElementById('sortByRecent');
@@ -106,8 +79,8 @@ sortByOldestButton.addEventListener('click', () => {
 function sortReviews(sortOption) {
     fetch(`/api/reviews?sort=${sortOption}`)
         .then(response => response.json())
-        .then(reviews => {
-            // 서버에서 반환된 정렬된 게시글을 표시
+        .then(page => {
+            const reviews = page.content;
             reviewsContainers.forEach(container => {
                 container.innerHTML = '';
             });
@@ -116,24 +89,18 @@ function sortReviews(sortOption) {
                 const card = document.createElement('div');
                 card.className = 'card';
 
-                // 카드 내용 (생략)
                 const cardHeader = document.createElement('div');
                 cardHeader.className = 'card-header';
-                cardHeader.textContent = review.title;
+                cardHeader.textContent = review.restaurant.restaurantName;
                 card.appendChild(cardHeader);
 
                 const cardBody = document.createElement('div');
                 cardBody.className = 'card-body';
 
-                const titleElement = document.createElement('h5');
+                const titleElement = document.createElement('h6');
                 titleElement.className = 'card-title';
                 titleElement.textContent = review.title;
                 cardBody.appendChild(titleElement);
-
-                const restaurantElement = document.createElement('h6');
-                restaurantElement.className = 'card-title';
-                restaurantElement.textContent = review.restaurant;
-                cardBody.appendChild(restaurantElement);
 
                 const contentElement = document.createElement('p');
                 contentElement.className = 'card-text';
