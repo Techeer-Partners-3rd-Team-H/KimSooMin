@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>레스토랑 목록</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="p-5 mb-5 text-center bg-light">
+        <h1 class="mb-3">Restaurants</h1>
+        <h4 class="mb-3">원하는 레스토랑을 찾아보세요.</h4>
+        <button type="button" id="review-btn"
+                th:onclick="|location.href='/reviews'|">리뷰 보러가기</button>
+    </div>
+
+    <div class="container">
+        <button type="button" id="create-btn"
+                th:onclick="|location.href='@{/new-restaurant}'|"
+                class="btn btn-secondary btn-sm mb-3">글 등록</button>
+
+        <div class="row-6" id="card-container" th:each="item : ${restaurants}">
+            <div class="card">
+                <div class="card-header" th:text="${item.restaurantName}">
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${item.restaurantName}"></h5>
+                    <p class="card-text" th:text="${item.category}"></p>
+                    <a th:href="@{/restaurants/{id}(id=${item.restaurantId})}" class="btn btn-primary">보러가기</a>
+                </div>
+            </div>
+            <br>
+        </div>
+
+        <!-- 페이지네이션 컴포넌트 표시 -->
+        <ul class="pagination">
+            <li th:if="${restaurants.hasPrevious()}" class="page-item">
+                <a class="page-link" th:href="@{/restaurants(page=0)}">첫 페이지</a>
+            </li>
+            <li th:if="${restaurants.hasPrevious()}" class="page-item">
+                <a class="page-link" th:href="@{/restaurants(page=${restaurants.number - 1})}">이전 페이지</a>
+            </li>
+            <li th:each="i : ${#numbers.sequence(0, restaurants.totalPages - 1)}" class="page-item">
+                <a class="page-link" th:href="@{/restaurants(page=${i})}" th:text="${i + 1}"></a>
+            </li>
+            <li th:if="${restaurants.hasNext()}" class="page-item">
+                <a class="page-link" th:href="@{/restaurants(page=${restaurants.number + 1})}">다음 페이지</a>
+            </li>
+            <li th:if="${restaurants.hasNext()}" class="page-item">
+                <a class="page-link" th:href="@{/restaurants(page=${restaurants.totalPages - 1})}">마지막 페이지</a>
+            </li>
+        </ul>
+    </div>
+    <script src="/restaurantList.js"></script>
+</body>
+</html>
