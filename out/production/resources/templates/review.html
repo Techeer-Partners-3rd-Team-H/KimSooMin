@@ -21,7 +21,7 @@
                     <div class="text-muted fst-italic mb-2" th:text="${#temporals.format(review.createdAt, 'yyyy-MM-dd HH:mm')}"></div>
                 </header>
                 <section class="mb-5">
-                    <h3 class="fw-bolder mb-3" th:text="${review.restaurant}"></h3>
+                    <h3 class="fw-bolder mb-3" th:text="${review.restaurant.restaurantName}"></h3>
                     <p class="fs-5 mb-4" th:text="${review.content}"></p>
                 </section>
                 <button type="button" id="modify-btn"

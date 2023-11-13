@@ -1,5 +1,6 @@
 package jenakxm.RestaurantReview.controller;
 
+import jenakxm.RestaurantReview.domain.Restaurant;
 import jenakxm.RestaurantReview.domain.Review;
 import jenakxm.RestaurantReview.dto.AddReviewRequest;
 import jenakxm.RestaurantReview.dto.ReviewResponse;
@@ -24,7 +25,7 @@ import java.util.stream.Collectors;
 public class ReviewApiController {
     private final ReviewService reviewService;
 
-    @PostMapping("/api/reviews")
+    @PostMapping(value = "/api/reviews")
     public ResponseEntity<Review> addReview(@RequestBody AddReviewRequest request) {
         Review savedReview = reviewService.save(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedReview);
@@ -53,11 +54,11 @@ public class ReviewApiController {
 
     @GetMapping("/api/reviews/search")
     public ResponseEntity<List<ReviewResponse>> searchReviews(@RequestParam(name = "keyword") String keyword) {
-        List<Review> searchResults = reviewService.searchByTitleAndContentContaining(keyword);
+        List<ReviewResponse> reviews = reviewService.searchByTitleAndContentContaining(keyword);
 
-        List<ReviewResponse> reviews = searchResults.stream()
-                .map(ReviewResponse::new)
-                .collect(Collectors.toList());
+//        List<ReviewResponse> reviews = searchResults.stream()
+//                .map(ReviewResponse::new)
+//                .collect(Collectors.toList());
 
         return ResponseEntity.ok().body(reviews);
     }

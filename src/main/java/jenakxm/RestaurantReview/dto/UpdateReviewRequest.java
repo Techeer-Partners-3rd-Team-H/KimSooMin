@@ -1,5 +1,6 @@
 package jenakxm.RestaurantReview.dto;
 
+import jenakxm.RestaurantReview.domain.Restaurant;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 public class UpdateReviewRequest {
-    private String restaurant;
+    private Restaurant restaurant;
     private String title;
     private String content;
     private LocalDateTime createdAt;

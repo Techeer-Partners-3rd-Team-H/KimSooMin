@@ -1,25 +1,28 @@
 package jenakxm.RestaurantReview.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 
 @Entity
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Setter
+@Table(name = "REVIEW")
+@NoArgsConstructor
 public class Review {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", updatable = false)
+    @Column(name = "review_id", updatable = false)
     private Long id;
 
-    @Column(name = "restaurant", nullable = false)
-    private String restaurant;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "restaurant_name", referencedColumnName = "restaurant_name", nullable = false)
+    @JsonManagedReference
+    private Restaurant restaurant;
 
     @Column(name = "title", nullable = false)
     private String title;
@@ -32,15 +35,19 @@ public class Review {
 
     @Builder
     public Review(String restaurant, String title, String content, LocalDateTime createdAt) {
-        this.restaurant = restaurant;
+        this.restaurant = new Restaurant(restaurant, null, false);
         this.title = title;
         this.content = content;
         this.createdAt = createdAt;
     }
 
-    public void update(String restaurant, String title, String content) {
+    public void update(Restaurant restaurant, String title, String content) {
         this.restaurant = restaurant;
         this.title = title;
         this.content = content;
+    }
+
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 }

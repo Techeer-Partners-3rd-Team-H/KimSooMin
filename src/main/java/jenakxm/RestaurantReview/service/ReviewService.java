@@ -2,6 +2,7 @@ package jenakxm.RestaurantReview.service;
 
 import jenakxm.RestaurantReview.domain.Review;
 import jenakxm.RestaurantReview.dto.AddReviewRequest;
+import jenakxm.RestaurantReview.dto.ReviewResponse;
 import jenakxm.RestaurantReview.dto.UpdateReviewRequest;
 import jenakxm.RestaurantReview.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
@@ -48,8 +49,16 @@ public class ReviewService {
         return review;
     }
 
-    public List<Review> searchByTitleAndContentContaining(String keyword) {
-        return reviewRepository.findByTitleContainingOrContentContaining(keyword, keyword);
+//    public List<Review> searchByTitleAndContentContaining(String keyword) {
+//        return reviewRepository.findByTitleContainingOrContentContaining(keyword, keyword);
+//    }
+
+    public List<ReviewResponse> searchByTitleAndContentContaining(String keyword) {
+        List<Review> searchResults = reviewRepository.findByTitleContainingOrContentContaining(keyword, keyword);
+
+        return searchResults.stream()
+                .map(ReviewResponse::new)
+                .collect(Collectors.toList());
     }
 
     public List<Review> findAllByOrderByCreatedAtAsc() {
