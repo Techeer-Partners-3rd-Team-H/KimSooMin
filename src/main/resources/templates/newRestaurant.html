@@ -15,7 +15,7 @@
     <div class="row">
         <div class="col-lg-8">
             <article>
-                <input type="hidden" id="restaurant-id" th:value="${restaurant.restaurantName}">
+                <input type="hidden" id="restaurant-id" th:value="${restaurant.restaurantId}">
 
                 <header class="mb-4">
                     <input type="text" class="form-control" placeholder="레스토랑 이름" id="restaurant-name" th:value="${restaurant.restaurantName}"></input>
@@ -25,8 +25,8 @@
                 </section>
 
                 <!-- id가 있을 때는 [수정] 버튼을, 없을 때는 [등록] 버튼이 보이게 함 -->
-                <button th:if="${restaurant.restaurantName} != null" type="button" id="modify-btn" class="btn btn-primary btn-sm">수정</button>
-                <button th:if="${restaurant.restaurantName} == null" type="button" id="create-btn" class="btn btn-primary btn-sm">등록</button>
+                <button th:if="${restaurant.restaurantId} != null" type="button" id="modify-btn" class="btn btn-primary btn-sm">수정</button>
+                <button th:if="${restaurant.restaurantId} == null" type="button" id="create-btn" class="btn btn-primary btn-sm">등록</button>
             </article>
         </div>
     </div>

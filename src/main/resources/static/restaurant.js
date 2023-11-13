@@ -26,7 +26,7 @@ const deleteButton = document.getElementById('delete-btn');
 if (deleteButton) {
     deleteButton.addEventListener('click', event => {
         let id = document.getElementById('restaurant-id').value;
-        fetch('/api/restaurants/' + encodeURIComponent(id), {
+        fetch('/api/restaurants/' + id, {
             method: 'DELETE'
         })
         .then(() => {
@@ -42,7 +42,7 @@ const modifyButton = document.getElementById('modify-btn');
 if (modifyButton) {
     modifyButton.addEventListener('click', event => {
         let params = new URLSearchParams(location.search);
-        let id = encodeURIComponent(params.get('restaurant-id'));
+        let id = params.get('restaurant-id');
 
         fetch('/api/restaurants/' + id, {
             method: 'PUT',
@@ -50,7 +50,7 @@ if (modifyButton) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                restaurantName: document.getElementById('restaurant-name').value,
+                // restaurantName: document.getElementById('restaurant-name').value,
                 category: document.getElementById('category').value,
             })
         })

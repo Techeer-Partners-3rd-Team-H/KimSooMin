@@ -20,4 +20,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
     Page<Restaurant> findAll(Pageable pageable);
 
     Restaurant findByRestaurantId(Long restaurantId);
+
+    void deleteByRestaurantId(Long restaurantId);
 }

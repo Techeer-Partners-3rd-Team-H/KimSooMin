@@ -29,8 +29,8 @@ public class RestaurantService {
     }
 
     @Transactional
-    public Restaurant update(String restaurantName, UpdateRestaurantRequest request) {
-        Restaurant restaurant = restaurantRepository.findByRestaurantName(restaurantName);
+    public Restaurant update(Long restaurantId, UpdateRestaurantRequest request) {
+        Restaurant restaurant = restaurantRepository.findByRestaurantId(restaurantId);
 
         restaurant.update(request.getCategory());
         return restaurant;
@@ -42,5 +42,10 @@ public class RestaurantService {
 
     public Restaurant findByRestaurantId(Long restaurantId) {
         return restaurantRepository.findByRestaurantId(restaurantId);
+    }
+
+    @Transactional
+    public void deleteByRestaurantId(Long restaurantId) {
+        restaurantRepository.deleteByRestaurantId(restaurantId);
     }
 }

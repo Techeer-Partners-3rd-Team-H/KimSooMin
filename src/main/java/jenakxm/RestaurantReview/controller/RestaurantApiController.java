@@ -29,34 +29,26 @@ public class RestaurantApiController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedRestaurant);
     }
 
-    @GetMapping("/{restaurantName}")
-    public ResponseEntity<?> findRestaurant(@PathVariable String restaurantName) {
+    @GetMapping("/{restaurantId}")
+    public ResponseEntity<?> findRestaurant(@PathVariable Long restaurantId) {
         try {
-            Restaurant restaurant = restaurantService.findByRestaurantName(restaurantName);
+            Restaurant restaurant = restaurantService.findByRestaurantId(restaurantId);
             return ResponseEntity.ok().body(new RestaurantResponse(restaurant));
         } catch (RestaurantNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Restaurant not found");
         }
     }
 
-    @DeleteMapping("/{restaurantName}")
-    public ResponseEntity<String> deleteRestaurant(@PathVariable String name) {
-        try {
-            restaurantService.deleteByRestaurantName(name);
-            return ResponseEntity.ok().build();
-        } catch (RestaurantNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Restaurant not found");
-        }
+    @DeleteMapping("/{restaurantId}")
+    public ResponseEntity<Void> deleteRestaurant(@PathVariable Long restaurantId) {
+        restaurantService.deleteByRestaurantId(restaurantId);
+        return ResponseEntity.ok().build();
     }
 
-    @PutMapping("/{restaurantName}")
-    public ResponseEntity<?> updateRestaurant(@PathVariable String restaurantName, @RequestBody UpdateRestaurantRequest request) {
-        try {
-            Restaurant updatedRestaurant = restaurantService.update(restaurantName, request);
-            return ResponseEntity.ok().body(updatedRestaurant);
-        } catch (RestaurantNotFoundException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Restaurant not found");
-        }
+    @PutMapping("/{restaurantId}")
+    public ResponseEntity<Restaurant> updateRestaurant(@PathVariable Long restaurantId, @RequestBody UpdateRestaurantRequest request) {
+        Restaurant updatedRestaurant = restaurantService.update(restaurantId, request);
+        return ResponseEntity.ok().body(updatedRestaurant);
     }
 
     @GetMapping

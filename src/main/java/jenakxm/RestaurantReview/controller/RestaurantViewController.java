@@ -29,7 +29,7 @@ public class RestaurantViewController {
         return "restaurantList";
     }
 
-    @GetMapping("/restaurants/{id}")
+    @GetMapping("/restaurants/{restaurantId}")
     public String getRestaurant(@PathVariable Long restaurantId, Model model) {
         // Restaurant restaurant = restaurantService.findByRestaurantName(restaurantName);
         Restaurant restaurant = restaurantService.findByRestaurantId(restaurantId);
